@@ -2,7 +2,7 @@
 
 cd /robot
 umask 0002
-docker run -it --rm \
+docker run --rm \
 	-e USER=$USER \
 	-v "$(pwd)":/mnt/working \
 	-v "$(pwd)":"/home/$USER/" \
@@ -14,5 +14,5 @@ docker run -it --rm \
 	--net=host \
 	-e HOME=/mnt/working \
 	guitar24t/ck-ros:latest \
-	/bin/bash -ci /mnt/working/ros_scripts/roslaunch_robot.sh
+	/bin/bash -c /mnt/working/ros_scripts/roslaunch_robot.sh
 

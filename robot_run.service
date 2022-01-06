@@ -1,0 +1,16 @@
+[Unit]
+Description=Robot Run Service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=team195
+ExecStart=/robot/ros_scripts/start_robot.sh
+ExecStop=/robot/ros_scripts/stop_robot.sh
+
+[Install]
+WantedBy=multi-user.target
+
