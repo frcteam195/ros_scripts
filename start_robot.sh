@@ -14,5 +14,5 @@ docker run -it --rm \
 	--net=host \
 	-e HOME=/mnt/working \
 	guitar24t/ck-ros:latest \
-	/bin/bash -ci /mnt/working/robot_scripts/roslaunch_robot.sh
+	/bin/bash -ci /mnt/working/ros_scripts/roslaunch_robot.sh
 
