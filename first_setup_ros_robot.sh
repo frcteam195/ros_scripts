@@ -16,7 +16,7 @@ docker pull guitar24t/ck-ros:latest
 
 mkdir /robot
 cd /robot
-GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git clone git@github.com:frcteam195/ros_scripts.git
+git clone https://github.com/frcteam195/ros_scripts.git
 cd /
 chown -R $USERNAME:$USERNAME /robot
 chmod +x /robot/ros_scripts/*.sh
