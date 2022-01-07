@@ -12,6 +12,7 @@ if [[ $EUID -ne 0 ]] || [ "${USERNAME}" = "root" ]; then
    exit 1
 fi
 
+sudo usermod -aG docker $USERNAME
 docker pull guitar24t/ck-ros:latest
 
 mkdir /robot
@@ -36,3 +37,5 @@ chmod 644 /etc/systemd/system/robot_run.service
 systemctl daemon-reload
 #systemctl enable jetsonclocks.service
 systemctl enable robot_run.service
+
+sudo reboot
