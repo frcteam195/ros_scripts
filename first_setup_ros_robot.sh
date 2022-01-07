@@ -4,7 +4,8 @@
 #USERNAME=team195
 
 #Get username if user is sudoing
-USERNAME=$(logname)
+USERNAME=$(who | awk '{print $1}')
+echo "Running setup for user ${USERNAME}"
 
 if [[ $EUID -ne 0 ]] || [ "${USERNAME}" = "root" ]; then
    echo "This script must be run with sudo from the user account you plan on using" 
