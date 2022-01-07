@@ -1,12 +1,12 @@
 #!/bin/bash
 
-export ROS_IP=$(/bin/ip address show dev eth0 | grep inet | cut -dt -f2 | cut -d/ -f1 | awk '{print $1}')
+source /robot/ros_scripts/robotservice_params.sh
 
 cd /robot
 umask 0002
 docker run --rm \
 	-e USER=$USER \
-	-e ROS_IP=$ROS_IP \
+	-e ROS_IP=${ROBOT_JETSON_IP} \
 	-v "$(pwd)":/mnt/working \
 	-v "$(pwd)":"/home/$USER/" \
 	--user $UID:$(id -g) \
