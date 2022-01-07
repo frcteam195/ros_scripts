@@ -24,14 +24,14 @@ nmcli con mod "Wired connection 1" ipv4.addresses "10.1.95.5/8" ipv4.gateway "10
 
 echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo')
 
-mv /robot/ros_scripts/jetsonclocks.service /etc/systemd/system/
-chown root:root /etc/systemd/system/jetsonclocks.service
-chmod 644 /etc/systemd/system/jetsonclocks.service
+#mv /robot/ros_scripts/jetsonclocks.service /etc/systemd/system/
+#chown root:root /etc/systemd/system/jetsonclocks.service
+#chmod 644 /etc/systemd/system/jetsonclocks.service
 
 mv /robot/ros_scripts/robot_run.service /etc/systemd/system/
 chown root:root /etc/systemd/system/robot_run.service
 chmod 644 /etc/systemd/system/robot_run.service
 
 systemctl daemon-reload
-systemctl enable jetsonclocks.service
+#systemctl enable jetsonclocks.service
 systemctl enable robot_run.service
