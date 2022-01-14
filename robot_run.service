@@ -8,7 +8,6 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-User=team195
 ExecStartPre=/robot/ros_scripts/prestart_robot.sh
 ExecStart=/robot/ros_scripts/start_robot.sh
 ExecStop=/robot/ros_scripts/stop_robot.sh
