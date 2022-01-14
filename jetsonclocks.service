@@ -1,9 +1,0 @@
-[Unit]
-Description=Run Jetson Clocks Script
-Type=oneshot
-
-[Service]
-ExecStart=/usr/bin/jetson_clocks
-
-[Install]
-WantedBy=multi-user.target
