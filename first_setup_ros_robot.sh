@@ -36,4 +36,11 @@ chmod 644 /etc/systemd/system/robot_run.service
 systemctl daemon-reload
 systemctl enable robot_run.service
 
+#Patch kernel for realsense
+cd $(dirname $0)
+git clone https://github.com/IntelRealSense/librealsense
+cd librealsense
+chmod +x ./scripts/*
+./scripts/patch-realsense-ubuntu-L4T.sh
+
 sudo reboot
