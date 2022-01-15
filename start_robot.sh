@@ -13,8 +13,8 @@ docker run --rm \
 	--volume="/etc/shadow:/etc/shadow:ro" \
 	--net=host \
 	-e HOME=/mnt/working \
-	--runtime nvidia
-	--privileged
+	--runtime nvidia \
+	--privileged \
 	guitar24t/ck-ros:latest \
 	/bin/bash -c /mnt/working/ros_scripts/roslaunch_robot.sh
 
