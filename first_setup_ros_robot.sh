@@ -43,4 +43,8 @@ systemctl enable robot_run.service
 #chmod +x ./scripts/*
 #./scripts/patch-realsense-ubuntu-L4T.sh
 
+#Uncomment these to save space on eMMC storage if needed
+#sudo rm -rf /var/lib/apt/lists/*
+#sudo apt-get clean
+
 sudo reboot
