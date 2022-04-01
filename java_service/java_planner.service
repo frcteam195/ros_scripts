@@ -1,0 +1,17 @@
+[Unit]
+Description=Java Planner Service
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStartPre=/robot/ros_scripts/java_service/prestart_java_service.sh
+ExecStart=/robot/ros_scripts/java_service/start_java_service.sh
+ExecStop=/robot/ros_scripts/java_service/stop_java_service.sh
+
+[Install]
+WantedBy=multi-user.target
+
