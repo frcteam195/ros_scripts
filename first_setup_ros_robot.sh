@@ -22,7 +22,7 @@ cd /
 chown -R $USERNAME:$USERNAME /robot
 chmod +x /robot/ros_scripts/*.sh
 
-nmcli con mod "Wired connection 1" ipv4.addresses "10.1.95.5/24" ipv4.gateway "10.1.95.1" ipv4.dns "8.8.8.8,8.8.4.4" ipv4.method "manual" ipv6.method "ignore"
+nmcli con mod "Wired connection 1" ipv4.addresses "10.1.95.5/8" ipv4.gateway "10.0.0.1" ipv4.dns "8.8.8.8,8.8.4.4" ipv4.method "manual" ipv6.method "ignore"
 
 #Disable password entry for sudo
 echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" | (sudo su -c 'EDITOR="tee -a" visudo')
