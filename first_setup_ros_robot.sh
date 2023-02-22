@@ -76,6 +76,10 @@ else
     sudo dkms add $PACKAGE_NAME/$PACKAGE_VERSION
     sudo dkms autoinstall $PACKAGE_NAME/$PACKAGE_VERSION
 
+
+    sudo crontab -l | { cat; echo "0 21 * * * /robot/log_cleanup.sh"; } | sudo crontab -
+
+
     #Uncomment these to save space on eMMC storage if needed
     #sudo rm -rf /var/lib/apt/lists/*
     #sudo apt-get clean
