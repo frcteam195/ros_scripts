@@ -41,17 +41,23 @@ if [ ! -f /var/run/resume-ros-setup-after-reboot ]; then
     sudo timedatectl set-ntp false
     sudo timedatectl set-timezone America/New_York
 
-    #here, need to modify udev and reboot
+    #here, need to modify udev to use rtc0 and reboot
     sudo sed -i 's/ATTR{hctosys}=="1"/ATTR{hctosys}=="0"/g' /usr/lib/udev/rules.d/50-udev-default.rules
 
     sudo touch /var/run/resume-ros-setup-after-reboot
 
+    sudo sync
     echo "After rebooting, log in again and run the script again to continue. After the second reboot, it is done."
     read -p "Press enter to reboot..."
     sudo reboot
 else 
 
     #set date and time
+    read -p 'Enter the date YYYY-MM-DD : ' datevar
+    read -p 'Enter the time hh:mm:ss : ' timevar
+
+    sudo timedatectl set-time ${datevar}
+    sudo timedatectl set-time ${timevar}
 
     hwclock -w -f /dev/rtc0
     hwclock -r -f /dev/rtc0
@@ -66,7 +72,7 @@ else
     #./scripts/patch-realsense-ubuntu-L4T.sh
 
     sudo apt-get update
-    sudo apt-get install dkms
+    sudo apt-get install dkms -y
 
     git clone https://github.com/lwfinger/rtl8723bu.git
     cd rtl8723bu
@@ -77,14 +83,16 @@ else
     sudo dkms autoinstall $PACKAGE_NAME/$PACKAGE_VERSION
 
 
-    sudo crontab -l | { cat; echo "0 21 * * * /robot/log_cleanup.sh"; } | sudo crontab -
+    sudo crontab -l | { cat; echo "@reboot /robot/log_cleanup.sh"; } | sudo crontab -
 
 
     #Uncomment these to save space on eMMC storage if needed
     #sudo rm -rf /var/lib/apt/lists/*
     #sudo apt-get clean
+
     sudo systemctl set-default multi-user.target
     sudo rm -Rf /var/run/resume-ros-setup-after-reboot
+    sudo sync
     read -p "Completed! Press enter to reboot..."
     sudo reboot
 fi
