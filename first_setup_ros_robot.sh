@@ -82,9 +82,22 @@ else
     sudo dkms add $PACKAGE_NAME/$PACKAGE_VERSION
     sudo dkms autoinstall $PACKAGE_NAME/$PACKAGE_VERSION
 
+    sudo apt remove alsa-utils -y
 
     sudo crontab -l | { cat; echo "@reboot /robot/log_cleanup.sh"; } | sudo crontab -
+    sudo snap remove chromium
+    sudo snap remove cups
+    sudo snap remove gnome-3-38-2004
+    sudo snap remove gtk-common-themes
+    sudo snap remove core20
+    sudo snap remove bare
+    sudo snap remove snapd-desktop-integration
+    sudo snap remove snapd
 
+    sudo apt remove --purge -y snapd
+
+    sudo systemctl disable apt-daily.timer
+    sudo systemctl disable apt-daily-upgrade.timer
 
     #Uncomment these to save space on eMMC storage if needed
     #sudo rm -rf /var/lib/apt/lists/*
